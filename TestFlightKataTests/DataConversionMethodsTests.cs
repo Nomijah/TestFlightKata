@@ -46,9 +46,9 @@ namespace TestFlightKataTests
         }
 
         [Theory]
-        [InlineData('P','C')]
-        [InlineData('L','Y')]
-        [InlineData('H','U')]
+        [InlineData('P', 'C')]
+        [InlineData('L', 'Y')]
+        [InlineData('H', 'U')]
         public static void ConvertConsonant_test(char a, char b)
         {
             // Given a character
@@ -90,7 +90,7 @@ namespace TestFlightKataTests
                 "PONMLKJIHGFEDCBA", "FEDCBAZYXWVUTSRQ"
             };
 
-            // When converting according to instructions
+            // When converting according to instructions.
             // "Replace every consonant with the character that comes 13
             // positions after alphabetically, wrapping around to the start of the alphabet."
             List<string> actual = Stage2BConv(testList);
@@ -112,7 +112,7 @@ namespace TestFlightKataTests
                 "COAZYXWIUTSEQPOA", "SEQPOAMYKJIUGFED"
             };
 
-            // When converted according to instructions
+            // When converted according to instructions.
             // "Iteratively from the second character, swap every vowel with
             // the character in the position before it."
             List<string> actual = Stage2CConv(testList);
@@ -121,6 +121,29 @@ namespace TestFlightKataTests
             List<string> expected = new List<string>
             {
                 "OACYZXIUWTESQOAP", "ESQOAPYMKIUJGEFD"
+            };
+            Assert.Equal(actual, expected);
+        }
+
+        [Fact]
+        public void Stage2DConv_test()
+        {
+            // Given a list of strings
+            List<string> testList = new List<string>
+            {
+                "OACYZXIUWTESQOAP", "ESQOAPYMKIUJGEFD"
+            };
+
+            // When converted according to instructions.
+            // "Replace each character with its numerical position in the alphabet."
+            List<int[]> actual = Stage2DConv(testList);
+
+            // Expect correct result
+            List<int[]> expected = new List<int[]>
+            {
+                new int[]{15, 1, 3, 25, 26, 24, 9, 21, 23, 20, 5, 19, 17, 15, 1, 16},
+                new int[]{5, 19, 17, 15, 1, 16, 25, 13, 11, 9, 21, 10, 7, 5, 6, 4}
+
             };
             Assert.Equal(actual, expected);
         }

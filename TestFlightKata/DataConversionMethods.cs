@@ -163,5 +163,23 @@ namespace TestFlightKata
             }
             return list;
         }
+
+        public static List<int[]> Stage2DConv(List<string> list) 
+        {
+            List<int[]> intArrList = new List<int[]>();
+            foreach (string str in list)
+            {
+                // Create new array to hold integers.
+                int[] temp = new int[str.Length];
+                // Save the numerical values of each char in string to the array.
+                for (int i = 0;i < str.Length; i++)
+                {
+                    temp[i] = GetCharValue(str[i]);
+                }
+                // Add the array to the list.
+                intArrList.Add(temp);
+            }
+            return intArrList;
+        }
     }
 }
