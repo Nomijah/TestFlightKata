@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static TestFlightKata.DataClass;
 
@@ -9,6 +10,24 @@ namespace TestFlightKata
 {
     public class DataConversionMethods
     {
+        public static string StringCleanup(string s)
+        {
+            Regex rgx = new Regex("[^A-Z]");
+            List<char> temp = s.ToCharArray().ToList();
+            for (int i = temp.Count -1; i >= 0; i--)
+            {
+                if (rgx.IsMatch(temp[i].ToString()))
+                {
+                    temp.RemoveAt(i);
+                }
+            }
+            string result = String.Empty;
+            foreach (char c in temp)
+            {
+                result += c;
+            }
+            return result;
+        }
         public static int GetCharValue(char c)
         {
             // Loop through dictionary to find the integral value.
@@ -82,7 +101,11 @@ namespace TestFlightKata
                 {
                     // If char goes beyond alphabet, wrap around.
                     charNumber = (pair.Key + 13)%26;
-
+                    // Fix problem if calculation is zero
+                    if (charNumber == 0)
+                    {
+                        newChar = 'Z';
+                    }
                     // Get the new char by the new value.
                     foreach (KeyValuePair<int, char> pair2 in charDict)
                     {
@@ -219,6 +242,12 @@ namespace TestFlightKata
                 result += GetCharByKey(i);
             }
             return result;
+        }
+
+        public static string CodeGenerator1 (string s)
+        {
+            // Gotta love this nesting of methods!!!
+            return Stage3BConv(Stage3AConv(Stage2DConv(Stage2CConv(Stage2BConv(Stage2AConv(Stage1Conv(s)))))));
         }
     }
 }

@@ -5,6 +5,20 @@ namespace TestFlightKataTests
     public class DataConversionMethodsTests
     {
         [Fact]
+        public void StringCleanup_test()
+        {
+            // Given a string with white spaces, lower case letters and row breaks
+            string testString = "ABEFsdg  /t/r DsaDSASG";
+
+            // When converted by removing all else but capital letters
+            string actual = StringCleanup(testString);
+
+            // Expect result to be correct
+            string expected = "ABEFDDSASG";
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void Stage1Conv_test()
         {
             // Given a string of characters
@@ -42,7 +56,7 @@ namespace TestFlightKataTests
             {
                 "PONMLKJIHGFEDCBA", "FEDCBAZYXWVUTSRQ"
             };
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -60,7 +74,7 @@ namespace TestFlightKataTests
 
             // Expect correct conversion
             char expected = two;
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -77,7 +91,7 @@ namespace TestFlightKataTests
 
             // Expect result to be correct
             bool expected = b;
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
 
         }
 
@@ -100,7 +114,7 @@ namespace TestFlightKataTests
             {
                 "COAZYXWIUTSEQPOA", "SEQPOAMYKJIUGFED"
             };
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -122,7 +136,7 @@ namespace TestFlightKataTests
             {
                 "OACYZXIUWTESQOAP", "ESQOAPYMKIUJGEFD"
             };
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -145,7 +159,7 @@ namespace TestFlightKataTests
                 new int[]{5, 19, 17, 15, 1, 16, 25, 13, 11, 9, 21, 10, 7, 5, 6, 4}
 
             };
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Fact]
@@ -169,7 +183,7 @@ namespace TestFlightKataTests
             {
                 20, 20, 20, 40, 27, 40, 34, 34, 34, 29, 26, 29, 24, 20, 7, 20
             };
-            Assert.Equal(actual, expected);
+            Assert.Equal(expected, actual);
         }
 
         [Theory]
@@ -214,14 +228,12 @@ namespace TestFlightKataTests
             // Given a string
             string testString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            // When converted according to specific rules
-
-            string actual = String.Empty;
+            // When converted according to specific rules, stated in previous tests
+            string actual = CodeGenerator1(testString);
 
             // Expect the conversion to result in TTTNANHHHCZCXTGT
             string expected = "TTTNANHHHCZCXTGT";
             Assert.Equal(expected, actual);
-
         }
     }
 }

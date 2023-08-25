@@ -1,11 +1,8 @@
 ﻿using TestFlightKata;
+using System.IO;
 
 using static TestFlightKata.DataConversionMethods;
 
-List<string> test = Stage1Conv("ABCDEFGHIJKLMNOPQ");
-test = Stage2AConv(test);
-
-foreach (string s in test)
-{
-    Console.WriteLine(s);
-}
+StreamReader sr = new StreamReader("C:\\Users\\pette\\source\\repos\\Test-Flight-Kata\\TestFlightKata\\TestFlightKata\\SeedData\\SeedData1.txt");
+string seedData1 = StringCleanup(sr.ReadToEnd());
+Console.WriteLine(CodeGenerator1(seedData1));
