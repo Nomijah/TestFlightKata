@@ -18,8 +18,27 @@ namespace TestFlightKataTests
             {
                 "ABCDEFGHIJKLMNOP", "QRSTUVWXYZABCDEF"
             };
-            Assert.Equal(expected[0], actual[0]);
-            Assert.Equal(expected[1], actual[1]);
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Stage2AConv_test()
+        {
+            // Given a list of strings
+            List<string> testList = new List<string>
+            {
+                "ABCDEFGHIJKLMNOP", "QRSTUVWXYZABCDEF"
+            };
+
+            // When converting at first part of second stage
+            List<string> actual = Stage2AConv(testList);
+
+            // Expect result to be the strings reversed
+            List<string> expected = new List<string>
+            {
+                "PONMLKJIHGFEDCBA", "FEDCBAZYXWVUTSRQ"
+            };
+            Assert.Equal(actual, expected);
         }
 
         [Fact]

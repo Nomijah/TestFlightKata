@@ -55,6 +55,12 @@ namespace TestFlightKata
 
         public static List<string> Stage2AConv (List<string> list)
         {
+            for (int i = 0; i < list.Count; i++)
+            {
+                char[] temp = list[i].ToCharArray();
+                Array.Reverse(temp);
+                list[i] = new string(temp);
+            }
             return list;
         }
     }
