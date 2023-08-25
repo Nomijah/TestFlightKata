@@ -1,2 +1,10 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using TestFlightKata;
+
+using static TestFlightKata.DataConversionMethods;
+
+List<string> test = Stage1Conv("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+
+foreach (string s in test)
+{
+    Console.WriteLine(s);
+}
