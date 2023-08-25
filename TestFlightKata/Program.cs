@@ -2,7 +2,7 @@
 
 using static TestFlightKata.DataConversionMethods;
 
-List<string> test = Stage1Conv("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+List<string> test = Stage1Conv("ABCDEFGHIJKLMNOPQ");
 
 foreach (string s in test)
 {

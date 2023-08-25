@@ -23,7 +23,7 @@ namespace TestFlightKata
         {
             int charCounter = 0;
             List<string> list = new List<string>();
-            for (int i = 0; i < Convert.ToInt32(Math.Round(Convert.ToDecimal(seed.Length) / 16)); i++)
+            for (int i = 0; i < Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(seed.Length) / 16)); i++)
             {
                 string temp = String.Empty;
 
@@ -50,6 +50,11 @@ namespace TestFlightKata
                     list[i] = temp;
                 }
             }
+            return list;
+        }
+
+        public static List<string> Stage2AConv (List<string> list)
+        {
             return list;
         }
     }
