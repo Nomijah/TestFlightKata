@@ -149,6 +149,66 @@ namespace TestFlightKataTests
         }
 
         [Fact]
+        public void Stage3AConv_test()
+        {
+            // Given a list of integer arrays
+            List<int[]> testList = new List<int[]>
+            {
+                new int[]{15, 1, 3, 25, 26, 24, 9, 21, 23, 20, 5, 19, 17, 15, 1, 16},
+                new int[]{5, 19, 17, 15, 1, 16, 25, 13, 11, 9, 21, 10, 7, 5, 6, 4}
+
+            };
+
+            // When adding them together according to instructions.
+            // "Position by position, add all numbers at that position from all
+            // the groups together."
+            int[] actual = Stage3AConv(testList);
+
+            // Expect correct result
+            int[] expected = new int[]
+            {
+                20, 20, 20, 40, 27, 40, 34, 34, 34, 29, 26, 29, 24, 20, 7, 20
+            };
+            Assert.Equal(actual, expected);
+        }
+
+        [Theory]
+        [InlineData(5,'E')]
+        [InlineData(27,'A')]
+        [InlineData(112,'H')]
+        public void GetCharByKey_test(int a, char b) 
+        {
+            // Given an integer
+            int testInt = a;
+
+            // When converted to a character
+            char actual = GetCharByKey(testInt);
+
+            // Expect correct character to be returned
+            char expected = b;
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Stage3BConv_test()
+        {
+            // Given an array of integers
+            int[] testArray = new int[]
+            {
+                20, 20, 20, 40, 27, 40, 34, 34, 34, 29, 26, 29, 24, 20, 7, 20
+            };
+
+            // When converted to a string according to instructions.
+            // "Replace each number by the character at that position in
+            // the alphabet, wrapping around if necessary."
+            string actual = Stage3BConv(testArray);
+
+            // Expect correct result
+            string expected = "TTTNANHHHCZCXTGT";
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void CodeGenerator1_test()
         {
             // Given a string

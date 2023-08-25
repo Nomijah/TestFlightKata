@@ -28,7 +28,7 @@ namespace TestFlightKata
             List<string> list = new List<string>();
             // Create the correct amount of strings by dividing the string
             // length by 16 and rounding up to nearest integer.
-            for (int i = 0; 
+            for (int i = 0;
                 i < Convert.ToInt32(Math.Ceiling(Convert.ToDecimal(seed.Length) / 16)); i++)
             {
                 string temp = String.Empty;
@@ -60,7 +60,7 @@ namespace TestFlightKata
             return list;
         }
 
-        public static List<string> Stage2AConv (List<string> list)
+        public static List<string> Stage2AConv(List<string> list)
         {
             // Reverse order of chars in string.
             for (int i = 0; i < list.Count; i++)
@@ -76,16 +76,13 @@ namespace TestFlightKata
         {
             int charNumber = 0;
             char newChar = 'a';
-            foreach(KeyValuePair<int, char> pair in charDict)
+            foreach (KeyValuePair<int, char> pair in charDict)
             {
                 if (pair.Value == c)
                 {
-                    charNumber = pair.Key + 13;
                     // If char goes beyond alphabet, wrap around.
-                    if (charNumber > 26)
-                    {
-                        charNumber -= 26;
-                    }
+                    charNumber = (pair.Key + 13)%26;
+
                     // Get the new char by the new value.
                     foreach (KeyValuePair<int, char> pair2 in charDict)
                     {
@@ -164,7 +161,7 @@ namespace TestFlightKata
             return list;
         }
 
-        public static List<int[]> Stage2DConv(List<string> list) 
+        public static List<int[]> Stage2DConv(List<string> list)
         {
             List<int[]> intArrList = new List<int[]>();
             foreach (string str in list)
@@ -172,7 +169,7 @@ namespace TestFlightKata
                 // Create new array to hold integers.
                 int[] temp = new int[str.Length];
                 // Save the numerical values of each char in string to the array.
-                for (int i = 0;i < str.Length; i++)
+                for (int i = 0; i < str.Length; i++)
                 {
                     temp[i] = GetCharValue(str[i]);
                 }
@@ -180,6 +177,48 @@ namespace TestFlightKata
                 intArrList.Add(temp);
             }
             return intArrList;
+        }
+
+        public static int[] Stage3AConv(List<int[]> list)
+        {
+            int[] totalArray = new int[list[0].Length];
+            foreach (int[] tempArray in list)
+            {
+                // Add numbers from each postion in every array to same position
+                // at new array.
+                for (int i = 0; i < list[0].Length; i++)
+                {
+                    totalArray[i] += tempArray[i];
+                }
+            }
+            return totalArray;
+        }
+
+        public static char GetCharByKey(int a)
+        {
+            // Loop through dictionary to find the integral value.
+            foreach (KeyValuePair<int, char> k in charDict)
+            {
+                // Make sure that the key value is wrapped around if out of range.
+                if (k.Key == a%26)
+                    return k.Value;
+                // Fix for above calculation not working for the letter Z.
+                else if (a%26 == 0)
+                {
+                    return 'Z';
+                }
+            }
+            return 'a';
+        }
+
+        public static string Stage3BConv(int[] intArray)
+        {
+            string result = String.Empty;
+            foreach (int i in intArray)
+            {
+                result += GetCharByKey(i);
+            }
+            return result;
         }
     }
 }
