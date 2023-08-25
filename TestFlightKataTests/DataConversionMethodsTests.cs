@@ -10,7 +10,10 @@ namespace TestFlightKataTests
             // Given a string of characters
             string testString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-            // When converted at stage one
+            // When converted according to instructions.
+            // "Discarding all whitespace, divide the seed up into groups of 16
+            // characters. If the last group is not of 16 characters,
+            // append the alphabet until it is."
             List<string> actual = Stage1Conv(testString);
 
             // Expect the result to be a list of two strings with set characters
@@ -31,6 +34,7 @@ namespace TestFlightKataTests
             };
 
             // When converting at first part of second stage
+            // "Reverse the order of characters in the group"
             List<string> actual = Stage2AConv(testList);
 
             // Expect result to be the strings reversed
@@ -87,12 +91,36 @@ namespace TestFlightKataTests
             };
 
             // When converting according to instructions
+            // "Replace every consonant with the character that comes 13
+            // positions after alphabetically, wrapping around to the start of the alphabet."
             List<string> actual = Stage2BConv(testList);
 
             // Expect the correct result
             List<string> expected = new List<string>
             {
                 "COAZYXWIUTSEQPOA", "SEQPOAMYKJIUGFED"
+            };
+            Assert.Equal(actual, expected);
+        }
+
+        [Fact]
+        public void Stage2CConv_test()
+        {
+            // Given a list of strings
+            List<string> testList = new List<string>
+            {
+                "COAZYXWIUTSEQPOA", "SEQPOAMYKJIUGFED"
+            };
+
+            // When converted according to instructions
+            // "Iteratively from the second character, swap every vowel with
+            // the character in the position before it."
+            List<string> actual = Stage2CConv(testList);
+
+            // Expect correct conversion
+            List<string> expected = new List<string>
+            {
+                "OACYZXIUWTESQOAP", "ESQOAPYMKIUJGEFD"
             };
             Assert.Equal(actual, expected);
         }
